@@ -8,11 +8,11 @@
 		
                 <div class="span9" id="content">
                      <div class="row-fluid">
-					 <a href="add_subject.php" class="btn btn-info"><i class="icon-plus-sign icon-large"></i> Add Subject</a>
+					 <a href="add_subject.php" class="btn btn-info"><i class="icon-plus-sign icon-large"></i> Add Course</a>
                         <!-- block -->
                         <div id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
-                                <div class="muted pull-left">Subject List</div>
+                                <div class="muted pull-left">Course List</div>
                             </div>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -23,16 +23,16 @@
 										<thead>
 										  <tr>
 											    <th></th>
-												<th>Subject Code</th>
-												<th>Subject Title</th>
+												<th>Course Code</th>
+												<th>Course Title</th>
 												<th></th>
 										   </tr>
 										</thead>
 										<tbody>
 											
 												<?php
-											$subject_query = mysql_query("select * from subject")or die(mysql_error());
-											while($row = mysql_fetch_array($subject_query)){
+											$subject_query = mysqli_query($con,"select * from subject")or die(mysqli_error());
+											while($row = mysqli_fetch_array($subject_query)){
 											$id = $row['subject_id'];
 											?>
 										

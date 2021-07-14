@@ -1,14 +1,14 @@
 			<form id="signin_student" class="form-signin" method="post">
-			<h3 class="form-signin-heading"><i class="icon-lock"></i> Sign up as Student</h3>
-			<input type="text" class="input-block-level" id="username" name="username" placeholder="ID Number" required>
+			<h3 class="form-signin-heading"><i class="icon-lock"></i> Authenticate as Student</h3>
+			<input type="text" class="input-block-level" id="username" name="username" placeholder="Reg Number" required>
 			<input type="text" class="input-block-level" id="firstname" name="firstname" placeholder="Firstname" required>
 			<input type="text" class="input-block-level" id="lastname" name="lastname" placeholder="Lastname" required>
-			<label>Class</label>
-			<select name="class_id" class="input-block-level span5">
+			<label>Current Level</label>
+			<select name="class_id" class="input-block-level">
 				<option></option>
 				<?php
-				$query = mysql_query("select * from class order by class_name ")or die(mysql_error());
-				while($row = mysql_fetch_array($query)){
+				$query = mysqli_query($con,"select * from class order by class_name ")or die(mysqli_error());
+				while($row = mysqli_fetch_array($query)){
 				?>
 				<option value="<?php  echo $row['class_id']; ?>"><?php echo $row['class_name']; ?></option>
 				<?php
@@ -17,7 +17,7 @@
 			</select>
 			<input type="password" class="input-block-level" id="password" name="password" placeholder="Password" required>
 			<input type="password" class="input-block-level" id="cpassword" name="cpassword" placeholder="Re-type Password" required>
-			<button id="signin" name="login" class="btn btn-info" type="submit"><i class="icon-check icon-large"></i> Sign in</button>
+			<button id="signin" name="login" class="btn btn-info" type="submit"><i class="icon-check icon-large"></i> Authenticate</button>
 			</form>
 			
 		
@@ -40,11 +40,11 @@
 						success: function(html){
 						if(html=='true')
 						{
-						$.jGrowl("Welcome to CHMSC Learning Management System", { header: 'Sign up Success' });
+						$.jGrowl("Welcome to BUK Learning Management System", { header: 'Authentication Success' });
 						var delay = 2000;
 							setTimeout(function(){ window.location = 'dashboard_student.php'  }, delay);  
 						}else if(html=='false'){
-							$.jGrowl("student does not found in the database Please Sure to Check Your ID Number or Firstname, Lastname and the Section You Belong. ", { header: 'Sign Up Failed' });
+							$.jGrowl("student does not found in the database Please Sure to Check Your ID Number or Firstname, Lastname and the Section You Belong. ", { header: 'Authentication Failed' });
 						}
 						}
 						
@@ -53,7 +53,7 @@
 			
 					}else
 						{
-						$.jGrowl("student does not found in the database", { header: 'Sign Up Failed' });
+						$.jGrowl("student not found in the database", { header: 'Authentication Failed' });
 						}
 				});
 			});

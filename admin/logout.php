@@ -1,7 +1,7 @@
 <?php
-include('dbcon.php');
+include('includes/dbcon.php');
 include('session.php');
-mysql_query("update user_log set logout_Date = NOW() where user_id = '$session_id' ")or die(mysql_error());
+mysqli_query($con,"update user_log set logout_Date = NOW() where user_id = '$session_id' ")or die(mysqli_error());
 
  session_destroy();
 header('location:index.php'); 

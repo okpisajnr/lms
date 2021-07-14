@@ -22,8 +22,8 @@
                                             <select name="department"  class="" required>
                                              	<option></option>
 											<?php
-											$query = mysql_query("select * from department order by department_name");
-											while($row = mysql_fetch_array($query)){
+											$query = mysqli_query($con,"select * from department order by department_name");
+											while($row = mysqli_fetch_array($query)){
 											
 											?>
 											<option value="<?php echo $row['department_id']; ?>"><?php echo $row['department_name']; ?></option>
@@ -41,6 +41,11 @@
 										<div class="control-group">
                                           <div class="controls">
                                             <input class="input focused" name="lastname" id="focusedInput" type="text" placeholder = "Lastname">
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                          <div class="controls">
+                                            <input class="input focused" name="username" id="focusedInput" type="text" placeholder = "Univeristy Mail">
                                           </div>
                                         </div>
 										
@@ -66,10 +71,11 @@
                                 $firstname = $_POST['firstname'];
                                 $lastname = $_POST['lastname'];
                                 $department_id = $_POST['department'];
+
+								$username = $_POST['username'];								
 								
-								
-								$query = mysql_query("select * from teacher where firstname = '$firstname' and lastname = '$lastname' ")or die(mysql_error());
-								$count = mysql_num_rows($query);
+								$query = mysqli_query($con, "select * from teacher where username = '$username'")or die(mysqli_error());
+								$count = mysqli_num_rows($query);
 								
 								if ($count > 0){ ?>
 								<script>
@@ -78,9 +84,9 @@
 								<?php
 								}else{
 
-                                mysql_query("insert into teacher (firstname,lastname,location,department_id)
-								values ('$firstname','$lastname','uploads/NO-IMAGE-AVAILABLE.jpg','$department_id')         
-								") or die(mysql_error()); ?>
+                                mysqli_query($con, "insert into teacher (username,firstname,lastname,location,department_id)
+								values ('$username','$firstname','$lastname','uploads/NO-IMAGE-AVAILABLE.jpg','$department_id')         
+								") or die(mysqli_error()); ?>
 								<script>
 							 	window.location = "teachers.php"; 
 								</script>

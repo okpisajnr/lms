@@ -9,11 +9,11 @@
                 <div class="span9" id="content">
                      <div class="row-fluid">
 					    <!-- breadcrumb -->
-										<?php $class_query = mysql_query("select * from teacher_class
+										<?php $class_query = mysqli_query($con,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
-										where teacher_class_id = '$get_id'")or die(mysql_error());
-										$class_row = mysql_fetch_array($class_query);
+										where teacher_class_id = '$get_id'")or die(mysqli_error());
+										$class_row = mysqli_fetch_array($class_query);
 										$class_id = $class_row['class_id'];
 										$school_year = $class_row['school_year'];
 										?>
@@ -28,10 +28,10 @@
                         <!-- block -->
                         <div id="block_bg" class="block">
                             <div class="navbar navbar-inner block-header">
-							<?php 		$query = mysql_query("select * FROM class_quiz 
+							<?php 		$query = mysqli_query($con,"select * FROM class_quiz 
 										LEFT JOIN quiz on class_quiz.quiz_id = quiz.quiz_id
-										where teacher_class_id = '$get_id'  ")or die(mysql_error());
-										$count = mysql_num_rows($query);
+										where teacher_class_id = '$get_id'  ")or die(mysqli_error());
+										$count = mysqli_num_rows($query);
 							?>
                                 <div id="" class="muted pull-right"><span class="badge badge-info"><?php echo $count; ?></span></div>
                             </div>
@@ -39,35 +39,34 @@
                                 <div class="span12">
 									<form action="copy_file_student.php" method="post">
 					
-									<?php include('copy_to_backpack_modal.php'); ?>
-  									<table cellpadding="0" cellspacing="0" border="0" class="table" id="">
+										<table cellpadding="0" cellspacing="0" border="0" class="table" id="">
 										<thead>
 										        <tr>
 												<th>Quiz Title</th>
 												<th>Description</th>
-												<th>Quiz Time (In Minutes)</th>
+												
 												<th></th>
 												</tr>
 										</thead>
 										<tbody>
                               		<?php
-										$query = mysql_query("select * FROM class_quiz 
+										$query = mysqli_query($con,"select * FROM class_quiz 
 										LEFT JOIN quiz on class_quiz.quiz_id = quiz.quiz_id
-										where teacher_class_id = '$get_id'  order by class_quiz_id DESC ")or die(mysql_error());
-										while($row = mysql_fetch_array($query)){
+										where teacher_class_id = '$get_id'  order by class_quiz_id DESC ")or die(mysqli_error());
+										while($row = mysqli_fetch_array($query)){
 										$id  = $row['class_quiz_id'];
 										$quiz_id  = $row['quiz_id'];
 										$quiz_time  = $row['quiz_time'];
 									
-										$query1 = mysql_query("select * from student_class_quiz where class_quiz_id = '$id' and student_id = '$session_id'")or die(mysql_error());
-										$row1 = mysql_fetch_array($query1);
+										$query1 = mysqli_query($con,"select * from student_class_quiz where class_quiz_id = '$id' and student_id = '$session_id'")or die(mysqli_error());
+										$row1 = mysqli_fetch_array($query1);
 										$grade = $row1['grade'];
 
 									?>                              
 										<tr>                     
 										 <td><?php echo $row['quiz_title']; ?></td>
-                                         <td><?php  echo $row['quiz_description']; ?></td>                                     
-                                         <td><?php  echo $row['quiz_time'] / 60; ?></td>                                     
+                                         <td><?php  echo $row['quiz_description']; ?></td>                                     <!-- 
+                                         <td><?php  echo $row['quiz_time'] / 5; ?></td> -->                                     
                                          <td width="200">
 										<?php if ($grade == ""){ ?>
 											<a  data-placement="bottom" title="Take This Quiz" id="<?php echo $id; ?>Download" href="take_test.php<?php echo '?id='.$get_id ?>&<?php echo 'class_quiz_id='.$id; ?>&<?php echo 'test=ok' ?>&<?php echo 'quiz_id='.$quiz_id; ?>&<?php echo 'quiz_time='.$quiz_time;	 ?>"><i class="icon-check icon-large"></i> Take This Quiz</a>

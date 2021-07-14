@@ -17,8 +17,8 @@
                                         </div>
 									-->	
 									<?php
-									$query = mysql_query("select * from teacher where teacher_id = '$get_id' ")or die(mysql_error());
-									$row = mysql_fetch_array($query);
+									$query = mysqli_query($con,"select * from teacher where teacher_id = '$get_id' ")or die(mysqli_error());
+									$row = mysqli_fetch_array($query);
 									?>
 										
 										  <div class="control-group">
@@ -26,8 +26,8 @@
                                           <div class="controls">
                                             <select name="department"  class="chzn-select"required>
 											<?php
-											$query_teacher = mysql_query("select * from teacher join  department")or die(mysql_error());
-											$row_teacher = mysql_fetch_array($query_teacher);
+											$query_teacher = mysqli_query($con,"select * from teacher join  department")or die(mysqli_error());
+											$row_teacher = mysqli_fetch_array($query_teacher);
 											
 											?>
 											
@@ -35,8 +35,8 @@
 												<?php echo $row_teacher['department_name']; ?>
 												</option>
 											<?php
-											$department = mysql_query("select * from department order by department_name");
-											while($department_row = mysql_fetch_array($department)){
+											$department = mysqli_query("select * from department order by department_name");
+											while($department_row = mysqli_fetch_array($department)){
 											
 											?>
 											<option value="<?php echo $department_row['department_id']; ?>"><?php echo $department_row['department_name']; ?></option>
@@ -54,6 +54,11 @@
 										<div class="control-group">
                                           <div class="controls">
                                             <input class="input focused" value="<?php echo $row['lastname']; ?>"  name="lastname" id="focusedInput" type="text" placeholder = "Lastname">
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                          <div class="controls">
+                                            <input class="input focused" value="<?php echo $row['username']; ?>"  name="username" id="focusedInput" type="text" placeholder = "username">
                                           </div>
                                         </div>
 										
@@ -81,8 +86,8 @@
                                 $department_id = $_POST['department'];
 								
 								
-								$query = mysql_query("select * from teacher where firstname = '$firstname' and lastname = '$lastname' ")or die(mysql_error());
-								$count = mysql_num_rows($query);
+								$query = mysqli_query($con,"select * from teacher where firstname = '$firstname' and lastname = '$lastname' ")or die(mysqli_error());
+								$count = mysqli_num_rows($query);
 								
 								if ($count > 1){ ?>
 								<script>
@@ -91,7 +96,7 @@
 								<?php
 								}else{
 								
-								mysql_query("update teacher set firstname = '$firstname' , lastname = '$lastname' , department_id = '$department_id' where teacher_id = '$get_id' ")or die(mysql_error());	
+								mysqli_query($con,"update teacher set firstname = '$firstname' , lastname = '$lastname' , department_id = '$department_id' where teacher_id = '$get_id' ")or die(mysqli_error());	
 								
 								?>
 								<script>

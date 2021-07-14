@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <title>GNDEC LMS</title>
+        <title>BUK LMS</title>
 		<meta name="description" content="Learning Management System">
-		<meta name="keywords" content="GNDEC LMS,GNDECLMS,GNDEC,LMS,GNDECLMS.COMXA">
-		<meta name="author" content="NAVDEEP GURJOT]">
+		<meta name="keywords" content="BUK LMS,BUKLMS,BUK,LMS,BUKLMS.COMXA">
+		<meta name="author" content="Khalid">
 		<meta charset="UTF-8">
         <!-- Bootstrap -->
 		<link href="admin/images/favicon.ico" rel="icon" type="image">

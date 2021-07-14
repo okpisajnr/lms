@@ -12,7 +12,7 @@
 				</a>
 			</li>
 			 <li class=""><a href="student_message.php"><i class="icon-chevron-right"></i><i class="icon-envelope-alt"></i>&nbsp;Message</a></li>
-			 <li class=""><a href="backpack.php"><i class="icon-chevron-right"></i><i class="icon-suitcase"></i>&nbsp;Backpack</a></li>
+			<!--  -->
 		</ul>
 		<?php/*  include('search_other_class.php'); */ ?>	
 </div>

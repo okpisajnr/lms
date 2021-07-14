@@ -1,5 +1,7 @@
 <?php include('header_dashboard.php'); ?>
 <?php include('session.php'); ?>
+
+
 <?php $get_id = $_GET['id']; ?>
 <body>
 		<?php include('navbar_teacher.php'); ?>
@@ -11,8 +13,8 @@
 					    <!-- breadcrumb -->	
 									<ul class="breadcrumb">
 										<?php
-										$school_year_query = mysql_query("select * from school_year order by school_year DESC")or die(mysql_error());
-										$school_year_query_row = mysql_fetch_array($school_year_query);
+										$school_year_query = mysqli_query($con,"select * from school_year order by school_year DESC")or die(mysqli_error());
+										$school_year_query_row = mysqli_fetch_array($school_year_query);
 										$school_year = $school_year_query_row['school_year'];
 										?>
 										<li><a href="#"><b>My Class</b></a><span class="divider">/</span></li>
@@ -51,8 +53,8 @@
 												<select id="qtype" name="question_tpye" required>
 													<option value=""></option>
 													<?php
-													$query_question = mysql_query("select * from question_type")or die(mysql_error());
-													while($query_question_row = mysql_fetch_array($query_question)){
+													$query_question = mysqli_query($con,"select * from question_type")or die(mysqli_error());
+													while($query_question_row = mysqli_fetch_array($query_question)){
 													?>
 													<option value="<?php echo $query_question_row['question_type_id']; ?>"><?php echo $query_question_row['question_type'];  ?></option>
 													<?php } ?>
@@ -101,20 +103,20 @@
 		$ans4 = $_POST['ans4'];
 		
 		if ($type  == '2'){
-				mysql_query("insert into quiz_question (quiz_id,question_text,date_added,answer,question_type_id) 
-			values('$get_id','$question',NOW(),'".$_POST['correctt']."','$type')")or die(mysql_error());
+				mysqli_query($con,"insert into quiz_question (quiz_id,question_text,date_added,answer,question_type_id) 
+			values('$get_id','$question',NOW(),'".$_POST['correctt']."','$type')")or die(mysqli_error());
 		}else{
 	
-		mysql_query("insert into quiz_question (quiz_id,question_text,date_added,answer,question_type_id) 
-		values('$get_id','$question',NOW(),'$answer','$type')")or die(mysql_error());
-		$query = mysql_query("select * from quiz_question order by quiz_question_id DESC LIMIT 1")or die(mysql_error());
-		$row = mysql_fetch_array($query);
+		mysqli_query($con,"insert into quiz_question (quiz_id,question_text,date_added,answer,question_type_id) 
+		values('$get_id','$question',NOW(),'$answer','$type')")or die(mysqli_error());
+		$query = mysqli_query($con,"select * from quiz_question order by quiz_question_id DESC LIMIT 1")or die(mysqli_error());
+		$row = mysqli_fetch_array($query);
 		$quiz_question_id = $row['quiz_question_id'];
 		
-		mysql_query("insert into answer (quiz_question_id,answer_text,choices) values('$quiz_question_id','$ans1','A')")or die(mysql_error());
-		mysql_query("insert into answer (quiz_question_id,answer_text,choices) values('$quiz_question_id','$ans2','B')")or die(mysql_error());
-		mysql_query("insert into answer (quiz_question_id,answer_text,choices) values('$quiz_question_id','$ans3','C')")or die(mysql_error());
-		mysql_query("insert into answer (quiz_question_id,answer_text,choices) values('$quiz_question_id','$ans4','D')")or die(mysql_error());
+		mysqli_query($con,"insert into answer (quiz_question_id,answer_text,choices) values('$quiz_question_id','$ans1','A')")or die(mysqli_error());
+		mysqli_query($con,"insert into answer (quiz_question_id,answer_text,choices) values('$quiz_question_id','$ans2','B')")or die(mysqli_error());
+		mysqli_query($con,"insert into answer (quiz_question_id,answer_text,choices) values('$quiz_question_id','$ans3','C')")or die(mysqli_error());
+		mysqli_query($con,"insert into answer (quiz_question_id,answer_text,choices) values('$quiz_question_id','$ans4','D')")or die(mysqli_error());
 		
 		}
 		
@@ -159,6 +161,6 @@
 </script>
 		<?php include('footer.php'); ?>
         </div>
-		<?php include('script.php'); ?>
+		<?#php include('script.php'); ?>
     </body>
 </html>

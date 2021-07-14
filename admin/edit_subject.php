@@ -19,8 +19,8 @@
 									<a href="subjects.php"><i class="icon-arrow-left"></i> Back</a>
 									
 									<?php
-									$query = mysql_query("select * from subject where subject_id = '$get_id'")or die(mysql_error());
-									$row = mysql_fetch_array($query);
+									$query = mysqli_query($con,"select * from subject where subject_id = '$get_id'")or die(mysqli_error());
+									$row = mysqli_fetch_array($query);
 									?>
 									
 									    <form class="form-horizontal" method="post">
@@ -70,13 +70,13 @@
 										
 										
 									
-										mysql_query("update subject set subject_code = '$subject_code' ,
+										mysqli_query($con,"update subject set subject_code = '$subject_code' ,
 																		subject_title = '$title',
 																		unit  = '$unit',
 																		description = '$description'
-																		where subject_id = '$get_id' ")or die(mysql_error());
+																		where subject_id = '$get_id' ")or die(mysqli_error());
 																		
-										mysql_query("insert into activity_log (date,username,action) values(NOW(),'$user_username','Edit Subject $subject_code')")or die(mysql_error());
+										mysqli_query($con,"insert into activity_log (date,username,action) values(NOW(),'$user_username','Edit Subject $subject_code')")or die(mysqli_error());
 										
 										?>
 										<script>

@@ -1,4 +1,7 @@
-	<?php include('dbcon.php'); ?>
+
+<?php @include('includes/dbcon.php'); ?>
+
+	
 	<form action="delete_student.php" method="post">
 	<table cellpadding="0" cellspacing="0" border="0" class="table" id="example">
 	<a data-toggle="modal" href="#student_delete" id="delete"  class="btn btn-danger" name=""><i class="icon-trash icon-large"></i></a>
@@ -28,13 +31,16 @@
 		</tr>
 		</thead>
 		<tbody>
-			
-		<?php
-	$query = mysql_query("select * from student LEFT JOIN class ON student.class_id = class.class_id where status = 'Registered' ORDER BY student.student_id DESC") or die(mysql_error());
-	while ($row = mysql_fetch_array($query)) {
+		
+<?php
+
+	$query = mysqli_query($con,"select * from student LEFT JOIN class ON student.class_id = class.class_id where status = 'Registered' ORDER BY student.student_id DESC") or die(mysqli_error());
+	while ($row = mysqli_fetch_array($query)) {
 		$id = $row['student_id'];
 		?>
 	
+
+
 		<tr>
 		<td width="30">
 		<input id="optionsCheckbox" class="uniform_on" name="selector[]" type="checkbox" value="<?php echo $id; ?>">

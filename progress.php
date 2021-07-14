@@ -6,15 +6,15 @@
         <div class="container-fluid">
             <div class="row-fluid">
 				<?php include('progress_link_student.php'); ?>
-                <div class="span4" id="content">
+                <div class="span8" id="content">
                      <div class="row-fluid">
 					    <!-- breadcrumb -->
 				
-										<?php $class_query = mysql_query("select * from teacher_class
+										<?php $class_query = mysqli_query($con,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
-										where teacher_class_id = '$get_id'")or die(mysql_error());
-										$class_row = mysql_fetch_array($class_query);
+										where teacher_class_id = '$get_id'")or die(mysqli_error());
+										$class_row = mysqli_fetch_array($class_query);
 										$class_id = $class_row['class_id'];
 										$school_year = $class_row['school_year'];
 										?>
@@ -48,12 +48,12 @@
 										<tbody>
 											
                               		<?php
-										$query = mysql_query("select * FROM student_assignment 
+										$query = mysqli_query($con,"select * FROM student_assignment 
 										LEFT JOIN student on student.student_id  = student_assignment.student_id
 										RIGHT JOIN assignment on student_assignment.assignment_id  = assignment.assignment_id
 										WHERE student_assignment.student_id = '$session_id'
-										order by fdatein DESC")or die(mysql_error());
-										while($row = mysql_fetch_array($query)){
+										order by fdatein DESC")or die(mysqli_error());
+										while($row = mysqli_fetch_array($query)){
 										$id  = $row['student_assignment_id'];
 										$student_id = $row['student_id'];
 									?>                              
@@ -87,7 +87,7 @@
 				
 				
 				
-				                <div class="span5" id="content">
+				                <div class="span8" id="content">
                      <div class="row-fluid">
 					    <!-- breadcrumb -->
 				
@@ -118,16 +118,16 @@
 										</thead>
 										<tbody>
                               		<?php
-										$query = mysql_query("select * FROM class_quiz 
+										$query = mysqli_query($con,"select * FROM class_quiz 
 										LEFT JOIN quiz on class_quiz.quiz_id = quiz.quiz_id
-										where teacher_class_id = '$get_id' order by class_quiz_id DESC ")or die(mysql_error());
-										while($row = mysql_fetch_array($query)){
+										where teacher_class_id = '$get_id' order by class_quiz_id DESC ")or die(mysqli_error());
+										while($row = mysqli_fetch_array($query)){
 										$id  = $row['class_quiz_id'];
 										$quiz_id  = $row['quiz_id'];
 										$quiz_time  = $row['quiz_time'];
 									
-										$query1 = mysql_query("select * from student_class_quiz where class_quiz_id = '$id' and student_id = '$session_id'")or die(mysql_error());
-										$row1 = mysql_fetch_array($query1);
+										$query1 = mysqli_query($con,"select * from student_class_quiz where class_quiz_id = '$id' and student_id = '$session_id'")or die(mysqli_error());
+										$row1 = mysqli_fetch_array($query1);
 										$grade = $row1['grade'];
 
 									?>          

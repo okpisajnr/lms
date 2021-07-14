@@ -13,12 +13,23 @@
                                           </div>
                                         </div>
 										
-										<div class="control-group">
+                 <div class="control-group">
+                                   
                                           <div class="controls">
-                                            <input class="input focused" id="focusedInput" name="pi" type="text" placeholder = "Person Incharge">
+                                            <select id="focusedInput" name="pi" class="input focused" required>
+                                              <option></option>
+                      <?php
+                      $cys_query = mysqli_query($con,"select * from teacher order by teacher_id");
+                      while($cys_row = mysqli_fetch_array($cys_query)){
+                      
+                      ?>
+                      <option value="<?php echo $cys_row['username']; ?>">                    <?php echo $cys_row['firstname'] . " " . $cys_row['lastname']; ?>
+</option>
+                      <?php } ?>
+                                            </select>
                                           </div>
                                         </div>
-								
+  
 										
 											<div class="control-group">
                                           <div class="controls">
@@ -39,8 +50,8 @@ $pi = $_POST['pi'];
 $d = $_POST['d'];
 
 
-$query = mysql_query("select * from department where department_name = '$d' and dean = '$pi' ")or die(mysql_error());
-$count = mysql_num_rows($query);
+$query = mysqli_query($con,"select * from department where department_name = '$d' and dean = '$pi' ")or die(mysqli_error());
+$count = mysqli_num_rows($query);
 
 if ($count > 0){ ?>
 <script>
@@ -48,7 +59,7 @@ alert('Data Already Exist');
 </script>
 <?php
 }else{
-mysql_query("insert into department (department_name,dean) values('$d','$pi')")or die(mysql_error());
+mysqli_query($con,"insert into department (department_name,dean) values('$d','$pi')")or die(mysqli_error());
 ?>
 <script>
 window.location = "department.php";

@@ -8,8 +8,8 @@
                     <span class="brand" href="#">E - Learning ADMIN Panel</span>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right">
-						<?php $query= mysql_query("select * from users where user_id = '$session_id'")or die(mysql_error());
-								$row = mysql_fetch_array($query);
+						<?php $query= mysqli_query($con,"select * from users where user_id = '$session_id'")or die(mysqli_error());
+								$row = mysqli_fetch_array($query);
 						?>
                             <li class="dropdown">
                                 <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user icon-large"></i><?php echo $row['firstname']." ".$row['lastname'];  ?> <i class="caret"></i>

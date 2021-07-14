@@ -12,8 +12,8 @@
 				</a>
 			</li>
 			<?php
-			$message_query = mysql_query("select * from message where reciever_id = '$session_id' and message_status != 'read' ")or die(mysql_error());
-			$count_message = mysql_num_rows($message_query);
+			$message_query = mysqli_query($con,"select * from message where reciever_id = '$session_id' and message_status != 'read' ")or die(mysqli_error());
+			$count_message = mysqli_num_rows($message_query);
 			?>
 			<li class="">
 			<a href="student_message.php"><i class="icon-chevron-right"></i><i class="icon-envelope-alt"></i>&nbsp;Message
@@ -23,8 +23,8 @@
 				<?php } ?>
 			</a>
 			</li>
-			<li class=""><a href="backpack.php"><i class="icon-chevron-right"></i><i class="icon-suitcase"></i>&nbsp;Backpack</a></li>
+			<!-- <li class=""><a href="backpack.php"><i class="icon-chevron-right"></i><i class="icon-suitcase"></i>&nbsp;Backpack</a></li> -->
 		</ul>
-		<?php /* include('search_other_class.php'); */ ?>	
+		<?php  include('search_other_class.php');  ?>	
 </div>
 

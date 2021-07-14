@@ -1,5 +1,5 @@
 <div class="pull-right">
 		<footer>
-           <p>Programmed by: Navdeep Gurjot CSE A</p>
+           <p>UG Final Year Project</p>
         <footer>
 </div>

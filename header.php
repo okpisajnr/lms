@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html class="no-js">
     <head>
-        <title>GNDEC LMS</title>
+        <title>BUK LMS</title>
 		<meta name="description" content="Learning Management System">
-		<meta name="keywords" content="GNDEC LMS,GNDECLMS,GNDEC,LMS,GNDECLMS.COMXA">
+		<meta name="keywords" content="BUK LMS,bukLMS,BUK,LMS,BUKLMS.COMXA">
 		<meta name="author" content="Navdeep Singh">
 		<meta charset="UTF-8">
         <!-- Bootstrap -->
-				<link href="admin/images/favicon.ico" rel="icon" type="image">
+				<link href="admin/images/buk.jpg" rel="icon" type="image" class="img-rounded">
 				<link href="admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
 				<link href="admin/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen"/>
 				<link href="admin/bootstrap/css/font-awesome.css" rel="stylesheet" media="screen"/>

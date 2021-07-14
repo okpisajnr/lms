@@ -30,21 +30,22 @@
 										</thead>
 										<tbody>
 													<?php
-													$user_query = mysql_query("select * from school_year")or die(mysql_error());
-													while($row = mysql_fetch_array($user_query)){
+													$user_query = mysqli_query($con,"select * from school_year")or die(mysqli_error());
+													while($row = mysqli_fetch_array($user_query)){
 													$id = $row['school_year_id'];
 													?>
 									
 												<tr>
 												<td width="30">
 												<input id="optionsCheckbox" class="uniform_on" name="selector[]" type="checkbox" value="<?php echo $id; ?>">
+
 												</td>
 												<td><?php echo $row['school_year']; ?></td>
 	
 												
 											
 												<td width="40">
-												<a href="edit_user.php<?php echo '?id='.$id; ?>"  data-toggle="modal" class="btn btn-success"><i class="icon-pencil icon-large"></i></a>
+												<a href="edit_year.php<?php echo '?id='.$id; ?>"  data-toggle="modal" class="btn btn-success"><i class="icon-pencil icon-large"></i></a>
 												</td>
 		
 									

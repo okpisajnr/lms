@@ -1,8 +1,12 @@
 <center>
 		<footer>
 		
-		<p>GNDEC E-Learning Copyright 2015</p>
-			<!-- <p>Programmed by: Navdeep CSE A</p> -->
+		<p style="color: red;">BUK E-Learning Copyright 
+
+			<?php 
+			echo date("Y"); ?>
+		</p>
+			<!-- easy Connz -->
 		</footer>
 </center>
 

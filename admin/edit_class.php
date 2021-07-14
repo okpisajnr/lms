@@ -31,8 +31,8 @@
 										</thead>
 										<tbody>
 										<?php
-										$class_query = mysql_query("select * from class")or die(mysql_error());
-										while($class_row = mysql_fetch_array($class_query)){
+										$class_query = mysqli_query($con,"select * from class")or die(mysqli_error());
+										while($class_row = mysqli_fetch_array($class_query)){
 										$id = $class_row['class_id'];
 										?>
 												

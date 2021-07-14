@@ -1,3 +1,4 @@
+
 <?php include('header.php'); ?>
   <body id="login">
     <div class="container">
@@ -21,7 +22,7 @@
 						success: function(html){
 						if(html=='true')
 						{
-						$.jGrowl("Welcome to CHMSC Learning Management System", { header: 'Access Granted' });
+						$.jGrowl("Welcome to BUK Learning Management System", { header: 'Access Granted' });
 						var delay = 2000;
 							setTimeout(function(){ window.location = 'dashboard.php'  }, delay);  
 						}

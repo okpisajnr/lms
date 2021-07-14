@@ -6,8 +6,8 @@
                                 <div class="muted pull-left">Edit Department</div>
                             </div>
 							<?php 
-							$query = mysql_query("select * from department where department_id = '$get_id'")or die(mysql_error());
-							$row = mysql_fetch_array($query);
+							$query = mysqli_query($con,"select * from department where department_id = '$get_id'")or die(mysqli_error());
+							$row = mysqli_fetch_array($query);
 							?>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -45,7 +45,7 @@
  $dn = $_POST['dn'];
  $d = $_POST['d'];
  
- mysql_query("update department set department_name = '$dn' , dean  = '$d' where department_id = '$get_id' ")or die(mysql_error());
+ mysqli_query($con,"update department set department_name = '$dn' , dean  = '$d' where department_id = '$get_id' ")or die(mysqli_error());
  ?>
  <script>
  window.location='department.php'; 

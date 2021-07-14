@@ -6,8 +6,8 @@
                                 <div class="muted pull-left">Edit Class</div>
                             </div>
 							<?php
-							$query = mysql_query("select * from class where class_id = '$get_id'")or die(mysql_error());
-							$row = mysql_fetch_array($query);
+							$query = mysqli_query($con,"select * from class where class_id = '$get_id'")or die(mysqli_error());
+							$row = mysqli_fetch_array($query);
 							?>
                             <div class="block-content collapse in">
                                 <div class="span12">
@@ -34,7 +34,7 @@
 if (isset($_POST['update'])){
 $class_name = $_POST['class_name'];
 
-mysql_query("update class set class_name = '$class_name' where class_id = '$get_id' ")or die(mysql_error());
+mysqli_query($con,"update class set class_name = '$class_name' where class_id = '$get_id' ")or die(mysqli_error());
 ?>
 
 <script>

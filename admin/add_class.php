@@ -30,8 +30,8 @@ if (isset($_POST['save'])){
 $class_name = $_POST['class_name'];
 
 
-$query = mysql_query("select * from class where class_name  =  '$class_name' ")or die(mysql_error());
-$count = mysql_num_rows($query);
+$query = mysqli_query($con,"select * from class where class_name  =  '$class_name' ")or die(mysqli_error());
+$count = mysqli_num_rows($query);
 
 if ($count > 0){ ?>
 <script>
@@ -39,7 +39,7 @@ alert('Date Already Exist');
 </script>
 <?php
 }else{
-mysql_query("insert into class (class_name) values('$class_name')")or die(mysql_error());
+mysqli_query($con,"insert into class (class_name) values('$class_name')")or die(mysqli_error());
 ?>
 <script>
 window.location = "class.php";

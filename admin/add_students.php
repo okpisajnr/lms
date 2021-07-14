@@ -1,3 +1,4 @@
+
    <div class="row-fluid">
                         <!-- block -->
                         <div class="block">
@@ -14,8 +15,8 @@
                                             <select  name="class_id" class="" required>
                                              	<option></option>
 											<?php
-											$cys_query = mysql_query("select * from class order by class_name");
-											while($cys_row = mysql_fetch_array($cys_query)){
+											$cys_query = mysqli_query($con,"select * from class order by class_name");
+											while($cys_row = mysqli_fetch_array($cys_query)){
 											
 											?>
 											<option value="<?php echo $cys_row['class_id']; ?>"><?php echo $cys_row['class_name']; ?></option>
@@ -26,7 +27,7 @@
 								
 										<div class="control-group">
                                           <div class="controls">
-                                            <input name="un" class="input focused" id="focusedInput" type="text" placeholder = "ID Number" required>
+                                            <input name="un" class="input focused" id="focusedInput" type="text" placeholder = "REG Number" required>
                                           </div>
                                         </div>
 										
@@ -56,7 +57,7 @@
                         <!-- /block -->
                     </div>
 					
-			<script>
+					<script>
 			jQuery(document).ready(function($){
 				$("#add_student").submit(function(e){
 					e.preventDefault();

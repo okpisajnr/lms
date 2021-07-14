@@ -10,11 +10,11 @@
                      <div class="row-fluid">
 					  <!-- breadcrumb -->
 				
-										<?php $class_query = mysql_query("select * from teacher_class
+										<?php $class_query = mysqli_query($con,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
-										where teacher_class_id = '$get_id'")or die(mysql_error());
-										$class_row = mysql_fetch_array($class_query);
+										where teacher_class_id = '$get_id'")or die(mysqli_error());
+										$class_row = mysqli_fetch_array($class_query);
 										?>
 				
 					     <ul class="breadcrumb">
@@ -41,7 +41,7 @@
 										<div class="control-group">
 											<label class="control-label" for="inputPassword">Subject Overview Content:</label>
 											<div class="controls">
-													<textarea name="content" id="ckeditor_full"></textarea>
+													<textarea rows="10" col="20" name="content" id="ckeditor_full"></textarea>
 											</div>
 										</div>
 												
@@ -58,7 +58,7 @@
 										<?php
 										if (isset($_POST['save'])){
 										$content = $_POST['content'];
-										mysql_query("insert into class_subject_overview	(teacher_class_id,content) values('$get_id','$content')")or die(mysql_error());
+										mysqli_query($con,"insert into class_subject_overview	(teacher_class_id,content) values('$get_id','$content')")or die(mysqli_error());
 										?>
 										<script>
 											window.location = 'subject_overview.php<?php echo '?id='.$get_id; ?>';
@@ -80,6 +80,6 @@
             </div>
 		<?php include('footer.php'); ?>
         </div>
-		<?php include('script.php'); ?>
+		<?php #include('script.php'); ?>
     </body>
 </html>

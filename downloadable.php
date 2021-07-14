@@ -9,11 +9,11 @@
                 <div class="span6" id="content">
                      <div class="row-fluid">
 					    <!-- breadcrumb -->
-										<?php $class_query = mysql_query("select * from teacher_class
+										<?php $class_query = mysqli_query($con,"select * from teacher_class
 										LEFT JOIN class ON class.class_id = teacher_class.class_id
 										LEFT JOIN subject ON subject.subject_id = teacher_class.subject_id
-										where teacher_class_id = '$get_id'")or die(mysql_error());
-										$class_row = mysql_fetch_array($class_query);
+										where teacher_class_id = '$get_id'")or die(mysqli_error());
+										$class_row = mysqli_fetch_array($class_query);
 										$class_id = $class_row['class_id'];
 										$school_year = $class_row['school_year'];
 										?>
@@ -42,8 +42,8 @@
 							</div>
 								
 									<?php
-										$query = mysql_query("select * FROM files where class_id = '$get_id'  order by fdatein DESC ")or die(mysql_error());
-										$count = mysql_fetch_array($query);
+										$query = mysqli_query($con,"select * FROM files where class_id = '$get_id'  order by fdatein DESC ")or die(mysqli_error());
+										$count = mysqli_fetch_array($query);
 										if ($count == '0'){ ?>
 											<div class="alert alert-info"><i class="icon-info-sign"></i> Currently you did not upload any downloadable materials</div>
 						
@@ -51,7 +51,7 @@
 									?>  
   								<form action="copy_file.php" method="post">
 								
-									<a data-toggle="modal" href="#user_delete" id="delete"  class="btn btn-info" name=""><i class="icon-file"></i> Copy Check item</a>
+									<a data-toggle="modal" href="#user_delete" iid="delete"  class="btn btn-info" name=""><i class="icon-file"></i> Copy Check item</a>
   									<table cellpadding="0" cellspacing="0" border="0" class="table" id="">
 									<?php include('move_to_school_year.php'); ?>
 										<thead>
@@ -68,8 +68,8 @@
 										<tbody>
 											
                               		<?php
-										$query = mysql_query("select * FROM files where class_id = '$get_id'  order by fdatein DESC ")or die(mysql_error());
-										while($row = mysql_fetch_array($query)){
+										$query = mysqli_query($con,"select * FROM files where class_id = '$get_id'  order by fdatein DESC ")or die(mysqli_error());
+										while($row = mysqli_fetch_array($query)){
 										$id  = $row['file_id'];
 									?>                              
 										<tr id="del<?php echo $id; ?>">

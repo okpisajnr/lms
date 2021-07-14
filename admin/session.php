@@ -9,7 +9,7 @@ window.location = "index.php";
 }
 $session_id=$_SESSION['id'];
 
-$user_query = mysql_query("select * from users where user_id = '$session_id'")or die(mysql_error());
-$user_row = mysql_fetch_array($user_query);
+$user_query = mysqli_query($con,"select * from users where user_id = '$session_id'")or die(mysqli_error($con));
+$user_row = mysqli_fetch_array($user_query);
 $user_username = $user_row['username'];
 ?>

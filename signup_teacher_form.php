@@ -1,13 +1,14 @@
+
 			<form id="signin_teacher" class="form-signin" method="post">
-					<h3 class="form-signin-heading"><i class="icon-lock"></i> Sign up as Teacher</h3>
+					<h3 class="form-signin-heading"><i class="icon-lock"></i> Authenticate as Teacher</h3>
 					<input type="text" class="input-block-level"  name="firstname" placeholder="Firstname" required>
 					<input type="text" class="input-block-level"  name="lastname" placeholder="Lastname" required>
 					<label>Department</label>
 					<select name="department_id" class="input-block-level span12">
 						<option></option>
 						<?php
-						$query = mysql_query("select * from department order by department_name ")or die(mysql_error());
-						while($row = mysql_fetch_array($query)){
+						$query = mysqli_query($con,"select * from department order by department_name ")or die(mysqli_error());
+						while($row = mysqli_fetch_array($query)){
 						?>
 						<option value="<?php echo $row['department_id'] ?>"><?php echo $row['department_name']; ?></option>
 						<?php
@@ -34,7 +35,7 @@
 						success: function(html){
 						if(html=='true')
 						{
-						$.jGrowl("Welcome to CHMSC Learning Management System", { header: 'Sign up Success' });
+						$.jGrowl("Welcome to BUK Learning Management System", { header: 'Sign up Success' });
 						var delay = 1000;
 							setTimeout(function(){ window.location = 'dasboard_teacher.php'  }, delay);  
 						}else{

@@ -1,3 +1,4 @@
+
 <?php include('header.php'); ?>
 <?php include('session.php'); ?>
     <body>
@@ -12,21 +13,21 @@
 		                        <!-- block -->
 		                        <div class="block">
 		                            <div class="navbar navbar-inner block-header">
-		                                <div class="muted pull-left">Add Subject</div>
+		                                <div class="muted pull-left">Add Course</div>
 		                            </div>
 		                            <div class="block-content collapse in">
 									<a href="subjects.php"><i class="icon-arrow-left"></i> Back</a>
 									    <form class="form-horizontal" method="post">
 										<div class="control-group">
-											<label class="control-label" for="inputEmail">Subject Code</label>
+											<label class="control-label" for="inputEmail">Course Code</label>
 											<div class="controls">
-											<input type="text" name="subject_code" id="inputEmail" placeholder="Subject Code">
+											<input type="text" name="subject_code" id="inputEmail" placeholder="Course Code">
 											</div>
 										</div>
 										<div class="control-group">
-											<label class="control-label" for="inputPassword">Subject Title</label>
+											<label class="control-label" for="inputPassword">Course Title</label>
 											<div class="controls">
-											<input type="text" class="span8" name="title" id="inputPassword" placeholder="Subject Title" required>
+											<input type="text" class="span8" name="title" id="inputPassword" placeholder="Course Title" required>
 											</div>
 										</div>
 										<div class="control-group">
@@ -47,7 +48,7 @@
 										</div>
 								
 										<div class="control-group">
-											<label class="control-label" for="inputPassword">Description</label>
+											<label class="control-label" for="inputPassword">Course Description</label>
 											<div class="controls">
 													<textarea name="description" id="ckeditor_full"></textarea>
 											</div>
@@ -72,8 +73,8 @@
 										$semester = $_POST['semester'];
 										
 										
-										$query = mysql_query("select * from subject where subject_code = '$subject_code' ")or die(mysql_error());
-										$count = mysql_num_rows($query);
+										$query = mysqli_query($con,"select * from subject where subject_code = '$subject_code' ")or die(mysqli_error());
+										$count = mysqli_num_rows($query);
 
 										if ($count > 0){ ?>
 										<script>
@@ -81,10 +82,10 @@
 										</script>
 										<?php
 										}else{
-										mysql_query("insert into subject (subject_code,subject_title,description,unit,semester) values('$subject_code','$title','$description','$unit','$semester')")or die(mysql_error());
+										mysqli_query($con,"insert into subject (subject_code,subject_title,description,unit,semester) values('$subject_code','$title','$description','$unit','$semester')")or die(mysqli_error());
 										
 										
-										mysql_query("insert into activity_log (date,username,action) values(NOW(),'$user_username','Add Subject $subject_code')")or die(mysql_error());
+										mysqli_query($con,"insert into activity_log (date,username,action) values(NOW(),'$user_username','Add Subject $subject_code')")or die(mysqli_error());
 										
 										
 										?>
@@ -106,7 +107,7 @@
             </div>
 		<?php include('footer.php'); ?>
         </div>
-		<?php include('script.php'); ?>
+		<?php #include('script.php'); ?>
     </body>
 
 </html>

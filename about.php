@@ -8,19 +8,21 @@
                         <!-- block -->
                         <div class="block">
 								<div class="navbar navbar-inner block-header">
-									<div id="" class="muted pull-right"><a href="index.php"><i class="icon-arrow-left"></i> Back</a></div>
+									<div id="" class="muted pull-right"><a href="index.php">
+                                        <i class="icon-arrow-left"></i> Back</a>
+                                    </div>
 								</div>
                             <div class="block-content collapse in">
                                 <div class="span12">
 										<?php
-											$mission_query = mysql_query("select * from content where title  = 'mission' ")or die(mysql_error());
-											$mission_row = mysql_fetch_array($mission_query);
+											$mission_query = mysqli_query($con,"select * from content where title  = 'mission' ")or die(mysqli_error());
+											$mission_row = mysqli_fetch_array($mission_query);
 											echo $mission_row['content'];
 										?>
 								<hr>
 										<?php
-											$mission_query = mysql_query("select * from content where title  = 'vision' ")or die(mysql_error());
-											$mission_row = mysql_fetch_array($mission_query);
+											$mission_query = mysqli_query($con,"select * from content where title  = 'vision' ")or die(mysqli_error());
+											$mission_row = mysqli_fetch_array($mission_query);
 											echo $mission_row['content'];
 										?>
                                 </div>

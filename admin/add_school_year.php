@@ -33,8 +33,8 @@ $school_year = $_POST['school_year'];
 
 
 
-$query = mysql_query("select * from school_year where school_year = '$school_year'")or die(mysql_error());
-$count = mysql_num_rows($query);
+$query = mysqli_query($con,"select * from school_year where school_year = '$school_year'")or die(mysqli_error());
+$count = mysqli_num_rows($query);
 
 if ($count > 0){ ?>
 <script>
@@ -42,9 +42,9 @@ alert('Data Already Exist');
 </script>
 <?php
 }else{
-mysql_query("insert into school_year (school_year) values('$school_year')")or die(mysql_error());
+mysqli_query($con,"insert into school_year (school_year) values('$school_year')")or die(mysqli_error());
 
-mysql_query("insert into activity_log (date,username,action) values(NOW(),'$user_username','Add School Year $school_year')")or die(mysql_error());
+mysqli_query($con,"insert into activity_log (date,username,action) values(NOW(),'$user_username','Add School Year $school_year')")or die(mysqli_error());
 ?>
 <script>
 window.location = "school_year.php";
